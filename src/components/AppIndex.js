@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions as BoxplotActions } from '../reducers/boxplotData'
 import Boxplot from './Boxplot/BoxplotComponent'
-import './style.css'
+// import './style.css'
 
 const { get_boxplot_data } = BoxplotActions
 
@@ -27,7 +27,7 @@ class AppIndex extends Component{
 
 function mapStateToProps(state){
     return{
-        boxplotData: state.boxplotData.boxplotData
+        boxplotData: state.boxplotData
     }
 }
 

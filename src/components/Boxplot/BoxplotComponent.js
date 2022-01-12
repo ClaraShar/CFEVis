@@ -1,124 +1,121 @@
-import React, { useState } from 'react';
-import ReactEcharts from 'echarts-for-react'
-import './style.css'
+import React, { useState, useEffect } from 'react';
+import useEcharts from 'react-hooks-echarts';
+import echarts from "echarts";
+// import './style.css'
 
-export default function Boxplot() {
+export default function Boxplot(props) {
     // 声明一个新的叫做 data 的 state 变量，初始化为[]
     const [data, setData] = useState([]);
 
+    const [chartRef, ref] = useEcharts()
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+      // fetch('/api/getBoxplotData', {
+      //       method: 'get',
+      //       headers: {
+      //           'Accept': 'application/json',
+      //       },
+      //   }).then(res => res.json())
+      //       .then(res => {
+      //         var getData = [], age = [], debt = [], years = [], score = [], income = []
+      //         for(let i = 0; i < res.data.data.length; i++) {
+      //           age.push(res.data.data[i]['Age'])
+      //           debt.push(res.data.data[i]['Debt'])
+      //           years.push(res.data.data[i]['YearsEmployed'])
+      //           score.push(res.data.data[i]['CreditScore'])
+      //           income.push(res.data.data[i]['Income'])
+      //         }
+      //         // getData.push(age)
+      //         getData.push(debt)
+      //         getData.push(years)
+      //         // getData.push(score)
+      //         // getData.push(income)
+      //         console.log("getData:",getData)
+      //         setData(getData)
+      //     });
+        const chart = chartRef.current
+        chart.setOption({
+            title: [
+                {
+                  text: 'Michelson-Morley Experiment',
+                  left: 'center'
+                },
+                {
+                  text: 'upper: Q3 + 1.5 * IQR \nlower: Q1 - 1.5 * IQR',
+                  borderColor: '#999',
+                  borderWidth: 1,
+                  textStyle: {
+                    fontWeight: 'normal',
+                    fontSize: 14,
+                    lineHeight: 20
+                  },
+                  left: '10%',
+                  top: '90%'
+                }
+              ],
+              dataset: [
+                {
+                  // prettier-ignore
+                  source: data
+                },
+                {
+                  transform: {
+                    type: 'boxplot',
+                    config: { itemNameFormatter: 'expr {value}' }
+                  }
+                },
+                {
+                  fromDatasetIndex: 1,
+                  fromTransformResult: 1
+                }
+              ],
+              tooltip: {
+                trigger: 'item',
+                axisPointer: {
+                  type: 'shadow'
+                }
+              },
+              grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '15%'
+              },
+              xAxis: {
+                type: 'category',
+                boundaryGap: true,
+                nameGap: 30,
+                splitArea: {
+                  show: false
+                },
+                splitLine: {
+                  show: false
+                }
+              },
+              yAxis: {
+                type: 'value',
+                name: 'km/s minus 299,000',
+                splitArea: {
+                  show: true
+                }
+              },
+              series: [
+                {
+                  name: 'boxplot',
+                  type: 'boxplot',
+                  datasetIndex: 1
+                },
+                {
+                  name: 'outlier',
+                  type: 'scatter',
+                  datasetIndex: 2
+                }
+              ]
+        })
+    });
+
     return (
-        <div className="boxplot">
-            <ReactEcharts
-                option={this.getOption()}
-                notMerge={true}
-                lazyUpdate={true}
-                onEvents={onEvents}
-                ref={(e) => { this.echarts = e;}} style={{width:'100%',height:'600px'}}
-            />
+        <div ref={ref} className="boxplot" style={{ height: 800 }}>
         </div>
     )
 } 
-    
-
-    componentDidMount() {
-        let myChart = this.echarts && this.echarts.getEchartsInstance(); 
-        //拿到实例后 通过getEchartsInstance()，在EchartsReactCore里ECharts实例
-        //注意EchartsReactCore实例和ECharts实例的区别 下面附上图片
-        //监听窗口onresize变化  这里有两种写法 推荐使用addEventListener写法 第一种方法绑定多个resize事件 会被覆盖
-        //这里只是简写 这里可以把函数提出来
-        //window.onresize = ()=> {
-        // myChart&&myChart.resize();
-        // };
-        window.addEventListener('resize',()=>{
-          myChart && myChart.resize();
-        })
-        fetch('/api/boxplot', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-            },
-        }).then(res => res.json())
-            .then(res => {
-                console.log(res.data.data)
-                var json = res.data.data, 
-                    newdata = [],
-                    newgroupColors = [];
-          });
-    }
-
-//         Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate.React limits the number of nested updates to prevent infinite loops
-// 翻译过来的意思就是：当component在componentWillUpdate或componentDidUpdate时期内重复调用setState时，就会发生超过最大递归深度这个问题。
-
-    getOption = (colors) => {
-        return {
-            title:{
-                show:true,
-                text:'T-SNE',
-                x:'center',
-                y:'top',
-                textStyle: {
-                    color: '#fff',
-                },
-                subtextStyle: {
-                    color: 'rgb(230,230,230)',
-                }
-            },
-            tooltip: {
-                //trigger: 'item',
-                // axisPointer: {
-                //     type: 'cross'
-                // }
-            },
-            formatter: function (params) {
-                // do some thing
-                return  "sid：" +params.value[2];
-            },//好像这里是悬浮显示sid的
-            xAxis: {
-                axisLabel: {
-                    show: false
-                },
-                axisLine: {
-                    onZero: false,    //坐标轴固定在最左方
-                    lineStyle:{
-                    color:'#FFF',
-                 }
-                },
-                splitLine: {
-                    show: false     //取消网格线
-                },
-                axisTick: {
-                    show: false     //取消刻度线
-                }  
-            },
-            yAxis: {
-                axisLabel: {
-                    show: false
-                },
-                axisLine: {
-                    onZero: false,    //坐标轴固定在最下方
-                    lineStyle:{
-                        color:'#FFF',
-                    }
-                },
-                splitLine: {
-                    show: false 
-                },
-                axisTick: {
-                    show: false     //取消刻度线
-                }
-            },
-            series: [{
-                symbolSize: 6,
-                data: this.state.data,
-                type: 'scatter',
-                itemStyle:{
-                    normal:{
-                        color: function(params) {
-                            // build a color map as your need.
-                            return colors[params.dataIndex];
-                        }
-                    }
-                },
-            }]
-        }
-    }

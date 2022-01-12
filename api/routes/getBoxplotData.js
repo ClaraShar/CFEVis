@@ -3,7 +3,7 @@ let boxplotDataModel = require('../../models/cca_predicts')
 
 function queryBoxplotData(req, res) {
     new Promise((resolve, reject) => {
-        boxplotDataModel.find({}) //筛选盒须图数据
+        boxplotDataModel.find({},{ Age: 1, Debt: 1, YearsEmployed: 1, CreditScore: 1, Income: 1})
         .then(result => {
             let responseData = { data: {}}
             responseData.data = result;
