@@ -63,7 +63,10 @@
     "react-addons-pure-render-mixin": "^15.6.3",
     "react-dom": "^17.0.2",
     "react-highlight-words": "^0.17.0",
+    "react-hooks-echarts": "^1.0.0",
     "react-redux": "^7.2.5",
-    "redux-thunk": "^2.3.0"
+    "react-router-dom": "^6.4.2",
+    "redux-thunk": "^2.3.0",
+    "use-query-params": "^2.1.1"
   }
 }

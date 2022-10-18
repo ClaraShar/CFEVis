@@ -12,7 +12,6 @@ if (module.hot) {
 
 const store = configureStore();
 
-
 ReactDom.render(
     <AppContainer>
         <Provider store={store}>
