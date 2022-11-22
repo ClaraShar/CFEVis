@@ -43,4 +43,9 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     devtool: 'inline-source-map', // 调试代码用，可以定位到错误源码源文件，而不是bundle.js
+    resolve: {
+        alias: {
+            'react-dom': '@hot-loader/react-dom'
+        }
+    },
 };

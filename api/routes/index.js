@@ -8,6 +8,6 @@ module.exports = function(app){
       res.send('hello world')
     })
 
-    //获取单一数据的特征
     app.get('/api/getBoxplotData', require('./getBoxplotData'))
+    app.get('/api/getHeatmapplotData', require('./getHeatmapplotData'))
 }

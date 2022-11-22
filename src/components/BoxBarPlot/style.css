@@ -1,0 +1,23 @@
+.Wrapper {
+    width: 50%;
+}
+
+.WrapperTitle {
+    text-align: center;
+}
+
+.WrapperContent {
+    display: flex;
+    height: 280px;
+    /* position: relative; */
+    margin-top: -6%;
+    margin-bottom: -5%;
+}
+
+.Boxplot {
+    width: 50%;
+}
+
+.Barchart {
+    width: 50%;
+}

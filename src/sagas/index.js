@@ -1,6 +1,6 @@
 import {fork} from 'redux-saga/effects';
-import { getBoxplotDataFlow } from './boxplotData';
+import { getHeatMapplotDataFlow } from './heatmapplotData'
 
 export default function* rootSaga(){
-    yield fork(getBoxplotDataFlow);
+    yield fork(getHeatMapplotDataFlow);
 }
