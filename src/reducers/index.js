@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { boxplotdata } from './boxplotData';
 import { heatmapplotdata } from './heatmapplotData';
+import { scatterplotdata } from './scatterplotData';
 
 const initialState = {
     isFetching: true,
@@ -45,5 +46,6 @@ export function reducer(state=initialState, action){
 export default combineReducers({
     boxplotdata,
     heatmapplotdata,
+    scatterplotdata,
     globalState: reducer
 });

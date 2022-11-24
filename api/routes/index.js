@@ -10,4 +10,5 @@ module.exports = function(app){
 
     app.get('/api/getBoxplotData', require('./getBoxplotData'))
     app.get('/api/getHeatmapplotData', require('./getHeatmapplotData'))
+    app.get('/api/getScatterplotData', require('./getScatterplotData'))
 }
