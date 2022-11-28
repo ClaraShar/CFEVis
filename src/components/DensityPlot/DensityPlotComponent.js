@@ -7,6 +7,9 @@ export default function DensityPlot(props) {
     // 声明一个新的叫做 data 的 state 变量，初始化为[]
     const [age, setAge] = useState([]);
     const [debt, setDebt] = useState([]);
+    const [years, setYears] = useState([]);
+    const [score, setScore] = useState([]);
+    const [income, setIncome] = useState([]);
 
     const [chartRefAgeScatter, refAgeScatter] = useEcharts();
 
@@ -19,13 +22,19 @@ export default function DensityPlot(props) {
           },
         }).then(res => res.json())
         .then(res => {
-          var age = [], debt = [];
+          var age = [], debt = [], years = [], score = [], income = [];
           for(let i = 0; i < res.data.data.length; i++) {
             age.push([1, parseFloat(res.data.data[i].Age)])
-            debt.push([2, parseFloat(res.data.data[i].Debt)])
+            debt.push([2, parseFloat(res.data.data[i].Debt)]) // +5,用于上移
+            years.push([3, parseInt(res.data.data[i].YearsEmployed)])
+            score.push([4, parseFloat(res.data.data[i].CreditScore)])
+            income.push([5, parseFloat(res.data.data[i].Income)])
           }
           setAge(age);
           setDebt(debt);
+          setYears(years);
+          setScore(score);
+          setIncome(income);
         });        
     }, []);
 
@@ -48,12 +57,12 @@ export default function DensityPlot(props) {
                 {
                 symbolSize: 20,
                 symbol: 'rect',
-                data: [...age, ...debt],
+                data: [...age, ...debt, ...years, ...score],
                 type: 'scatter'
                 }
             ]
         })
-    }, [age, debt]);
+    }, [age, debt, years, score]);
 
 
     return (
