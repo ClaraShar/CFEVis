@@ -106,8 +106,13 @@ export default function BoxBarplot(props) {
               type: 'shadow'
             }
           },
-         
+          // title: {
+          //   text: "AgeNorm",
+          //   top: '10%',
+          //   left: 'center',
+          // },
           yAxis: {
+            // name: 'Approved',
             type: 'category',
             boundaryGap: true,
             nameGap: 30,
@@ -147,10 +152,18 @@ export default function BoxBarplot(props) {
 
       const barChart = chartRefAgeBar.current
         barChart.setOption({
+          // title: {
+          //   text: "Age",
+          //   top: '10%',
+          //   left: 'center',
+          // },
           color: '#63b2ee',
           xAxis: {
             type: 'category',
-            data: [-1.50431845,-0.94288497 -0.3814515,0.17998197,0.74141544,1.30284891,1.86428239,2.42571586,2.98714933,3.5485828,4.11001627].map((e) => e.toFixed(2))
+            data: 
+            [0,0.125,0.25 ,0.375,0.5 ,0.625,0.75 ,0.875,1. ] // Log
+            // [-1.50431845,-0.94288497 -0.3814515,0.17998197,0.74141544,1.30284891,1.86428239,2.42571586,2.98714933,3.5485828,4.11001627].map((e) => e.toFixed(2)), Norm
+            // [13.75,22.0625,30.375,38.6875,47,55.3125,63.625,71.9375,80.25].map((e) => e.toFixed(2)), 原始值
         },
           yAxis: {
             type: 'value'
@@ -161,7 +174,7 @@ export default function BoxBarplot(props) {
           },
           series: [
             {
-              data: [96,209,147,99,53,43,25,9,6,3],
+              data: [210,0 ,0,0,0 ,0 ,0,480],// [96,209,147,99,53,43,25,9,6,3],Norm // [148,231,148,77,48,25,9,4], 原始值
               type: 'bar'
             }
           ]
@@ -243,7 +256,8 @@ export default function BoxBarplot(props) {
           color: '#f8cb7f',
           xAxis: {
             type: 'category',
-            data: [-0.95661321,-0.39374875,0.16911572,0.73198018,1.29484465,1.85770911,2.42057358,2.98343804,3.54630251,4.10916697,4.67203144].map((e) => e.toFixed(2))
+            data: [2.62103955,2.84155297,3.06206639,3.2825798,3.50309322,3.72360664,3.94412005,4.16463347,4.38514689].map((e) => e.toFixed(2)), // log
+            // [-0.95661321,-0.39374875,0.16911572,0.73198018,1.29484465,1.85770911,2.42057358,2.98343804,3.54630251,4.10916697,4.67203144].map((e) => e.toFixed(2)) Norm
         },
           yAxis: {
             type: 'value'
@@ -254,7 +268,7 @@ export default function BoxBarplot(props) {
           },
           series: [
             {
-              data: [347,129,55,72,51,19,7,5,2,3],
+              data: [ 23,108,162,150,124,70,42,11], // log // [347,129,55,72,51,19,7,5,2,3], Nrom
               type: 'bar'
             }
           ]
@@ -336,7 +350,8 @@ export default function BoxBarplot(props) {
           color: '#f89588',
           xAxis: {
             type: 'category',
-            data: [-0.66487669,0.18737375,1.03962418,1.89187462,2.74412505,3.59637549,4.44862592,5.30087636,6.15312679,7.00537723,7.85762766].map((e) => e.toFixed(2))
+            data: [0,1,2,3,4,5,6,7,8], // log
+            // [-0.66487669,0.18737375,1.03962418,1.89187462,2.74412505,3.59637549,4.44862592,5.30087636,6.15312679,7.00537723,7.85762766].map((e) => e.toFixed(2)) Norm
         },
           yAxis: {
             type: 'value'
@@ -347,7 +362,7 @@ export default function BoxBarplot(props) {
           },
           series: [
             {
-              data: [523,95,37,12,12,6,2,2,0,1],
+              data: [59,6,57,138,8,4,2,416], // log // [523,95,37,12,12,6,2,2,0,1], Norm
               type: 'bar'
             }
           ]
@@ -429,7 +444,8 @@ export default function BoxBarplot(props) {
           color: '#7cd6cf',
           xAxis: {
             type: 'category',
-            data: [-0.49388662,0.8848802,2.26364702,3.64241383,5.02118065,6.39994747,7.77871429,9.15748111,10.53624792,11.91501474,13.29378156].map((e) => e.toFixed(2))
+            data: [0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1], // log
+            // [-0.49388662,0.8848802,2.26364702,3.64241383,5.02118065,6.39994747,7.77871429,9.15748111,10.53624792,11.91501474,13.29378156].map((e) => e.toFixed(2)) Norm
         },
           yAxis: {
             type: 'value'
@@ -440,7 +456,7 @@ export default function BoxBarplot(props) {
           },
           series: [
             {
-              data: [595,72,20,1,0,1,0,0,0,1],
+              data:  [395,0,0,0,0,0,0,295], // log // [595,72,20,1,0,1,0,0,0,1], Norm
               type: 'bar'
             }
           ]
@@ -522,7 +538,8 @@ export default function BoxBarplot(props) {
           color: '#efa666',
           xAxis: {
             type: 'category',
-            data: [-0.19541334,1.72532701,3.64606735,5.5668077,7.48754804,9.40828839,11.32902873,13.24976908,15.17050942,17.09124977,19.01199011].map((e) => e.toFixed(2))
+            data: [0,0.25,0.5,0.75,1,1.25,1.5,1.75,2], // log
+            // [-0.19541334,1.72532701,3.64606735,5.5668077,7.48754804,9.40828839,11.32902873,13.24976908,15.17050942,17.09124977,19.01199011].map((e) => e.toFixed(2)) Norm
         },
           yAxis: {
             type: 'value'
@@ -533,7 +550,7 @@ export default function BoxBarplot(props) {
           },
           series: [
             {
-              data: [677,8,1,1,0,2,0,0,0,1],
+              data: [625,0 ,0,0, 8, 0, 0, 57], // log // [677,8,1,1,0,2,0,0,0,1], Norm
               type: 'bar'
             }
           ]
@@ -544,35 +561,35 @@ export default function BoxBarplot(props) {
     return (
       <div className='Wrapper'>
           <div className='Age'>
-            <div className='WrapperTitle'>AgeNorm</div>
+            <div className='WrapperTitle'>AgeLog</div>
             <div className='WrapperContent'>
               <div ref={refAgeBar} className="Barchart"></div>
               <div ref={refAgeBox} className="Boxplot"></div>            
             </div>
           </div>
           <div className='Debt'>
-            <div className='WrapperTitle'>DebtNorm</div>
+            <div className='WrapperTitle'>DebtLog</div>
             <div className='WrapperContent'>
               <div ref={refDebtBar} className="Barchart"></div>
               <div ref={refDebtBox} className="Boxplot"></div>
             </div>
           </div>
           <div className='Years'>
-            <div className='WrapperTitle'>YearsNorm</div>
+            <div className='WrapperTitle'>YearsEmployedLog</div>
             <div className='WrapperContent'>
               <div ref={refYearsBar} className="Barchart"></div>
               <div ref={refYearsBox} className="Boxplot"></div>            
             </div>
           </div>
           <div className='Score'>
-            <div className='WrapperTitle'>ScoreNorm</div>
+            <div className='WrapperTitle'>ScoreLog</div>
             <div className='WrapperContent'>
               <div ref={refScoreBar} className="Barchart"></div>
               <div ref={refScoreBox} className="Boxplot"></div>
             </div>
           </div>
           <div className='Income'>
-            <div className='WrapperTitle'>IncomeNorm</div>
+            <div className='WrapperTitle'>IncomeLog</div>
             <div className='WrapperContent'>
               <div ref={refIncomeBar} className="Barchart"></div>
               <div ref={refIncomeBox} className="Boxplot"></div>

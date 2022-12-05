@@ -30,12 +30,12 @@ export default function FeatureImportancePlot(props) {
               },
               yAxis: {
                 type: 'category',
-                data: ['Married', 'Male', 'EducationLevel', 'Employed', 'Age', 'CreditScore', 'Debt', 'YearsEmployed', 'PriorDefault']
+                data: ['Ethnicity', 'Employed', 'EducationLevel', 'Age', 'Citizen', 'Debt','CreditScore', 'YearsEmployed', 'PriorDefault']
               },
               series: [
                 {
                   type: 'bar',
-                  data: [0.010767, 0.014915, 0.062647, 0.065417, 0.086645, 0.099940, 0.100262, 0.109382, 0.308404],
+                  data: [0.025079, 0.062647, 0.065417, 0.086645, 0.090377, 0.099940, 0.100262, 0.109382, 0.308404],
                   color: '#7898e1',
                 }
               ]
