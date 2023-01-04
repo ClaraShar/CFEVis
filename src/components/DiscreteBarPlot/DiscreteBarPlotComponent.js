@@ -51,7 +51,7 @@ export default function DiscreteBarPlot(props) {
                 emphasis: {
                   focus: 'series'
                 },
-                data: [284, 77],
+                data: [306, 77],
               },
               {
                 name: '1',
@@ -60,7 +60,7 @@ export default function DiscreteBarPlot(props) {
                 emphasis: {
                   focus: 'series'
                 },
-                data: [23, 306],
+                data: [23, 284],
                 color: 'pink',
               },
             ]

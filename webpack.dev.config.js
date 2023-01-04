@@ -30,6 +30,14 @@ module.exports = {
             use: ['style-loader', 'css-loader']
         }]
     },
+    node: {
+        setImmediate: false,
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty',
+    },
     devServer:{
         contentBase: './dist',
         historyApiFallback: false,

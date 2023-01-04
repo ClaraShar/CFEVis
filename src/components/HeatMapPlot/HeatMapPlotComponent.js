@@ -18,21 +18,26 @@ export default function HeatMapplot(props) {
         }).then(res => res.json())
         .then(res => {
           var temp0 = [], temp1 = [];
+          console.log(res.data.data);
           for(let i = 0; i < res.data.data.length; i++) {
-            if(res.data.data[i].Approved == '0') {
+            if(parseFloat(res.data.data[i].Approved) == 0) {
                 temp0.push([i, 0, parseFloat(res.data.data[i].PriorDefault)])
-                temp0.push([i, 1, parseFloat(res.data.data[i].Debt)])
-                temp0.push([i, 2, parseFloat(res.data.data[i].Years)])
-                temp0.push([i, 3, parseFloat(res.data.data[i].Age)])
-                temp0.push([i, 4, parseFloat(res.data.data[i].Score)])
-                temp0.push([i, 5, parseFloat(res.data.data[i].Income)])
+                temp0.push([i, 1, parseFloat(res.data.data[i].Employed) > 0 ? 0 : 1])
+                temp0.push([i, 2, parseFloat(res.data.data[i].Debt)])
+                temp0.push([i, 3, parseFloat(res.data.data[i].YearsEmployed)])
+                temp0.push([i, 4, parseFloat(res.data.data[i].Age)])
+                temp0.push([i, 5, parseFloat(res.data.data[i].CreditScore)])
+                temp0.push([i, 6, parseFloat(res.data.data[i].Income)])
+                temp0.push([i, 7, parseFloat(res.data.data[i].EducationLeval)])
             } else{
                 temp1.push([i, 0, parseFloat(res.data.data[i].PriorDefault)])
-                temp1.push([i, 1, parseFloat(res.data.data[i].Debt)])
-                temp1.push([i, 2, parseFloat(res.data.data[i].Years)])
-                temp1.push([i, 3, parseFloat(res.data.data[i].Age)])
-                temp1.push([i, 4, parseFloat(res.data.data[i].Score)])
-                temp1.push([i, 5, parseFloat(res.data.data[i].Income)])
+                temp1.push([i, 1, parseFloat(res.data.data[i].Employed) > 0 ? 0 : 1])
+                temp1.push([i, 2, parseFloat(res.data.data[i].Debt)])
+                temp1.push([i, 3, parseFloat(res.data.data[i].YearsEmployed)])
+                temp1.push([i, 4, parseFloat(res.data.data[i].Age)])
+                temp1.push([i, 5, parseFloat(res.data.data[i].CreditScore)])
+                temp1.push([i, 6, parseFloat(res.data.data[i].Income)])
+                temp1.push([i, 7, parseFloat(res.data.data[i].EducationLeval)])
             }
           }
           setData0(temp0)
@@ -69,7 +74,7 @@ export default function HeatMapplot(props) {
               },
               yAxis: {
                 type: 'category',
-                data: ['PriorDefault', 'Debt', 'Years', 'Age', 'Score', 'Income'],
+                data: ['PriorDefault', 'Employed', 'Debt', 'YearsEmployed', 'Age', 'CreditScore', 'Income', 'EducationLevel'],
                 splitArea: {
                   show: true
                 }
@@ -117,7 +122,7 @@ export default function HeatMapplot(props) {
               },
               yAxis: {
                 type: 'category',
-                data: ['PriorDefault', 'Debt', 'Years', 'Age', 'Score', 'Income'],
+                data: ['PriorDefault', 'Employed', 'Debt', 'YearsEmployed', 'Age', 'CreditScore', 'Income', 'EducationLevel'],
                 splitArea: {
                   show: true
                 }
