@@ -58,11 +58,25 @@ export default function HeatMapplot(props) {
             tooltip: {
                 position: 'top'
               },
-            //   gradientColor: {
-            //     0: '#f6efa6',
-            //     1: '#d88273',
-            //     1: '#bf444c',
-            //   },
+              /* 该版本是实例视图的渐变条
+              gradientColor: {
+                0: '#3CB371',
+                1: '#fff',
+                2: '#EE7621',
+              },
+              visualMap: {
+                min: 0,
+                max: 1,
+                precision: 3,
+                text: ['True', 'False'],
+                formatter: function (value) {
+                    return value // * 100 + '%'; // 范围标签显示内容。
+                },
+                calculable: true,
+                orient: 'horizontal',
+                left: 'center',
+                bottom: '15%'
+              }, */
               grid: {
                 left: '12%',
               },

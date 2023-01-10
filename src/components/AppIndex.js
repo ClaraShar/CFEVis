@@ -24,7 +24,7 @@ class AppIndex extends Component{
     render(){
         return (
             <div className='AppWrapper'>
-                <div className='BoxBarplot'>
+                {/* <div className='BoxBarplot'>
                     <BoxBarplot boxbarplotData={this.props.boxbarplotData}/>
                 </div>
                 <div className='DiscreteBarPlot'>
@@ -35,7 +35,7 @@ class AppIndex extends Component{
                 </div>
                 <div className='FeatureImportancePlot'>
                     <FeatureImportancePlot featureimportanceplotData={this.props.featureimportanceplotData}/>
-                </div>
+                </div> */}
                 <div className='DensityPlot'>
                     <DensityPlot densityeplotData={this.props.densityeplotData}/>
                 </div>
