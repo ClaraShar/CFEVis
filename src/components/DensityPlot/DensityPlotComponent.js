@@ -25,15 +25,13 @@ export default function DensityPlot(props) {
         .then(res => {
           var age = [], debt = [], years = [], score = [], income = [];
           for(let i = 0; i < res.data.data.length; i++) {
-            // if(res.data.data[i].flag == 3 && res.data.data[i].PriorDefault == 1) {
+            // flag: 0-TN, 1-FP, 2-FN, 3-TP
+            if(res.data.data[i].flag == 0) { // Approved：0 is +, 1 is -
               debt.push(['Debt', res.data.data[i].Debt + 0.09])
               score.push(['CreditScore', res.data.data[i].CreditScore + 0.09])
               years.push(['YearsEmployed', res.data.data[i].YearsEmployed + 0.09])
               age.push(['Age', res.data.data[i].Age + 0.09])
-            // } 
-            // else {
-            // }
-            // income.push([5, parseFloat(res.data.data[i].Income)])
+            }
           }
           setAge(age);
           setDebt(debt);
@@ -53,13 +51,10 @@ export default function DensityPlot(props) {
       .then(res => {
         var education = [], ethnicity = [];
         for(let i = 0; i < res.data.data.length; i++) {
-          // if(res.data.data[i].flag == 3 && res.data.data[i].PriorDefault == 1) {
+          if(res.data.data[i].flag == 0) {
             education.push(['EducationLevel', res.data.data[i].EducationLevel / 13 + 0.05])
             ethnicity.push(['Ethnicity', res.data.data[i].Ethnicity / 8 + 0.07])
-          // } 
-          // else {
-          // }
-          // income.push([5, parseFloat(res.data.data[i].Income)])
+          } 
         }
         setEducation(education);
         setEthnicity(ethnicity);
@@ -116,7 +111,6 @@ export default function DensityPlot(props) {
                 color: 'grey',
                 data: [
                   ['Age', 1.3],
-                  ['EducationLevel', 1.3],
                   ['Ethnicity', 1.3],
                 ],
                 type: 'scatter',
@@ -134,6 +128,7 @@ export default function DensityPlot(props) {
                   ['CreditScore', 1.3],
                   ['Debt', 1.3],
                   ['Employed', 1.3],
+                  ['EducationLevel', 1.3],
                 ],
                 type: 'scatter',
               },
@@ -166,7 +161,7 @@ export default function DensityPlot(props) {
                 symbolKeepAspect: true,
                 data: [...education],
                 type: 'scatter',
-                color: 'rgba(128, 128, 128, 0.05)',
+                color: 'rgba(99,178,238, 0.05)', // 'rgba(128, 128, 128, 0.05)',
                 select: {
                   itemStyle: {
                     borderColor: '#212121',
@@ -186,32 +181,32 @@ export default function DensityPlot(props) {
                   }
                 },
               },
-              {
-                symbolSize: 25,
-                // 线，放最后避免覆盖，或者设置z
-                symbol: 'path://M32 464h960V576H32z',
-                symbolKeepAspect: true,
-                color: 'black',
-                data: [
-                  ['Age', 0.2],
-                  ['EducationLevel', 3 / 13 + 0.05],
-                  ['Ethnicity', 4 / 8 + 0.07],
-                ],
-                label: {
-                  show: true,
-                  formatter: (e) => {
-                    if(e.data[0] == 'Age') {
-                      return e.data[1] + '%';
-                    } else if(e.data[0] == 'EducationLevel') {
-                      return Math.round((e.data[1] - 0.05) * 13);
-                    } else if(e.data[0] == 'Ethnicity') {
-                      return Math.round((e.data[1] - 0.07) * 8);
-                    }
-                  },
-                  position: 'top',
-                },
-                type: 'scatter',
-              },
+              // {
+              //   symbolSize: 25,
+              //   // 线，放最后避免覆盖，或者设置z
+              //   symbol: 'path://M32 464h960V576H32z',
+              //   symbolKeepAspect: true,
+              //   color: 'black',
+              //   data: [
+              //     ['Age', 0.2],
+              //     ['EducationLevel', 3 / 13 + 0.05],
+              //     ['Ethnicity', 4 / 8 + 0.07],
+              //   ],
+              //   label: {
+              //     show: true,
+              //     formatter: (e) => {
+              //       if(e.data[0] == 'Age') {
+              //         return e.data[1] + '%';
+              //       } else if(e.data[0] == 'EducationLevel') {
+              //         return Math.round((e.data[1] - 0.05) * 13);
+              //       } else if(e.data[0] == 'Ethnicity') {
+              //         return Math.round((e.data[1] - 0.07) * 8);
+              //       }
+              //     },
+              //     position: 'top',
+              //   },
+              //   type: 'scatter',
+              // },
               {
                 // 堆叠柱状图
                 name: 'PriorDefault',
@@ -220,7 +215,9 @@ export default function DensityPlot(props) {
                 // emphasis: {
                 //   focus: 'series'
                 // },
-                data: [0.553, 0.66, 1.05],
+                data: [0.927, 0.9, 1.024], // nagetive
+                // All: [0.553, 0.66, 1.05],
+                // positive: [0.087, 0.370, 1.084],
                 color: '#5470c6',
                 barWidth: 32,
               },
@@ -228,14 +225,18 @@ export default function DensityPlot(props) {
                 name: 'Employed',
                 type: 'bar',
                 stack: 'Ad',
-                data: [0.61, 0.5, 0.01],
+                data: [0.233, 0.26, 0.009], // nagetive
+                // All: [0.61, 0.5, 0.01],
+                // positive: [1.073, 0.79, 0.019]
                 color: 'pink',
               },
               {
                 name: 'Citizen',
                 type: 'bar',
                 stack: 'Ad',
-                data: [0, 0, 0.1],
+                data: [0, 0, 0.127], // nagetive
+                // All: [0, 0, 0.1],
+                // positive: [0, 0, 0.057]
               }
             ]
         })
